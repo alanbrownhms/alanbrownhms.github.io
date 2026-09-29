@@ -1,0 +1,621 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brown Lab · Harvard Medical School</title>
+<meta name="description" content="The Brown lab at Harvard Medical School uses structural, biophysical and biochemical techniques to unravel the secrets of cilia.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fbfaf7;
+    --surface: #ffffff;
+    --ink: #1b1d22;
+    --muted: #5d6270;
+    --line: #e4e1da;
+    --accent: #a51c30;        /* Harvard crimson */
+    --accent-soft: #f6e8ea;
+    --dark: #0b0c10;
+    --radius: 10px;
+    --max: 1120px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 16px/1.65 Inter, system-ui, sans-serif;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  h1, h2, h3 { font-family: Fraunces, Georgia, serif; font-weight: 600; line-height: 1.2; margin: 0 0 .5em; }
+  h2 { font-size: clamp(1.8rem, 3vw, 2.4rem); }
+  h3 { font-size: 1.2rem; }
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 20px; }
+  section { padding: 88px 0; border-top: 1px solid var(--line); }
+  .eyebrow { font-size: .78rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: .6rem; }
+  .lede { font-size: 1.12rem; color: var(--muted); max-width: 62ch; }
+
+  /* Header */
+  header {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(251,250,247,.92); backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  header .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 16px; }
+  .brand { font-family: Fraunces, serif; font-weight: 600; font-size: 1.2rem; color: var(--ink); }
+  .brand small { display: block; font: 500 .72rem Inter, sans-serif; color: var(--muted); letter-spacing: .02em; }
+  nav ul { display: flex; gap: 22px; list-style: none; margin: 0; padding: 0; }
+  nav a { color: var(--ink); font-size: .93rem; font-weight: 500; }
+  nav a:hover { color: var(--accent); text-decoration: none; }
+  .menu-btn { display: none; background: none; border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px; font: inherit; cursor: pointer; }
+  @media (max-width: 760px) {
+    .menu-btn { display: block; }
+    nav ul { display: none; position: absolute; top: 64px; left: 0; right: 0; flex-direction: column; gap: 0; background: var(--bg); border-bottom: 1px solid var(--line); }
+    nav ul.open { display: flex; }
+    nav li a { display: block; padding: 12px 20px; }
+  }
+
+  /* Hero */
+  .hero { background: var(--dark); color: #f3f1ec; border: 0; padding: 0; }
+  .hero .wrap { display: grid; grid-template-columns: 1fr 1.1fr; align-items: center; gap: 40px; min-height: 560px; padding-top: 48px; padding-bottom: 48px; }
+  .hero h1 { font-size: clamp(2.2rem, 4.6vw, 3.6rem); }
+  .hero h1 em { font-style: normal; color: #e8687a; }
+  .hero p { color: #c3c1bb; font-size: 1.1rem; max-width: 44ch; }
+  .hero .art { aspect-ratio: 4/3; background: url("https://brown.hms.harvard.edu/sites/brown.hms.harvard.edu/files/images/brown-cover-art-low.jpg") center/cover no-repeat; border-radius: var(--radius); }
+  .hero .cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
+  .btn { display: inline-block; padding: 11px 18px; border-radius: 999px; font-weight: 600; font-size: .92rem; }
+  .btn-primary { background: var(--accent); color: #fff; }
+  .btn-ghost { border: 1px solid #3a3c44; color: #f3f1ec; }
+  .btn:hover { text-decoration: none; filter: brightness(1.1); }
+  @media (max-width: 860px) { .hero .wrap { grid-template-columns: 1fr; min-height: 0; } }
+
+  /* Research */
+  .research-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 48px; }
+  .research-intro p { margin-top: 0; color: var(--muted); }
+  @media (max-width: 860px) { .research-intro { grid-template-columns: 1fr; gap: 0; } }
+  .projects { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  @media (max-width: 900px) { .projects { grid-template-columns: 1fr; } }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; }
+  .card img { aspect-ratio: 1; object-fit: cover; background: var(--dark); }
+  .card .body { padding: 22px; display: flex; flex-direction: column; flex: 1; }
+  .card p { color: var(--muted); font-size: .95rem; margin: 0 0 12px; }
+  details summary { cursor: pointer; font-weight: 600; font-size: .92rem; color: var(--accent); margin-top: auto; list-style: none; }
+  details summary::-webkit-details-marker { display: none; }
+  details summary::after { content: " →"; }
+  details[open] summary::after { content: " ↑"; }
+  details[open] summary { margin-bottom: 10px; }
+  .card details p { font-size: .92rem; }
+
+  /* Team */
+  .team { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 24px; margin-top: 36px; }
+  .person { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; }
+  .person img { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; margin-bottom: 14px; background: var(--line); }
+  .person h3 { margin-bottom: 2px; }
+  .person .role { color: var(--accent); font-size: .85rem; font-weight: 600; margin-bottom: 10px; }
+  .person p { font-size: .9rem; color: var(--muted); margin: 0 0 10px; }
+  .person .links { font-size: .85rem; display: flex; gap: 12px; }
+  .person details summary { font-size: .85rem; }
+  .pi { grid-column: 1 / -1; display: grid; grid-template-columns: 160px 1fr; gap: 28px; align-items: start; }
+  .pi img { width: 160px; height: 160px; }
+  @media (max-width: 560px) { .pi { grid-template-columns: 1fr; } }
+
+  .alumni { margin-top: 32px; }
+  .alumni h3 { margin-top: 28px; font-size: 1rem; font-family: Inter, sans-serif; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+  .alumni ul { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 0 32px; }
+  .alumni li { padding: 12px 0; border-bottom: 1px solid var(--line); font-size: .92rem; }
+  .alumni li b { font-weight: 600; }
+  .alumni li span { color: var(--muted); }
+
+  /* News */
+  .news { list-style: none; padding: 0; margin: 32px 0 0; }
+  .news li { display: grid; grid-template-columns: 130px 1fr; gap: 24px; padding: 18px 0; border-bottom: 1px solid var(--line); }
+  .news time { color: var(--muted); font-size: .88rem; font-variant-numeric: tabular-nums; padding-top: 2px; }
+  .news h3 { font-family: Inter, sans-serif; font-size: 1rem; margin: 0 0 4px; }
+  .news p { margin: 0; color: var(--muted); font-size: .95rem; }
+  .news li.hidden { display: none; }
+  @media (max-width: 560px) { .news li { grid-template-columns: 1fr; gap: 2px; } }
+  .more { margin-top: 24px; background: none; border: 1px solid var(--line); border-radius: 999px; padding: 10px 18px; font: 600 .9rem Inter, sans-serif; cursor: pointer; color: var(--ink); }
+  .more:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* Publications */
+  .pub-tools { display: flex; gap: 12px; flex-wrap: wrap; margin: 28px 0 8px; }
+  .pub-tools input { flex: 1; min-width: 220px; padding: 11px 14px; border: 1px solid var(--line); border-radius: 8px; font: inherit; background: var(--surface); }
+  .pub-count { color: var(--muted); font-size: .88rem; align-self: center; }
+  .year { margin-top: 32px; }
+  .year h3 { font-size: 1.4rem; color: var(--accent); border-bottom: 1px solid var(--line); padding-bottom: 6px; }
+  .pub { padding: 12px 0; }
+  .pub .t { font-weight: 600; color: var(--ink); }
+  .pub .a { color: var(--muted); font-size: .9rem; }
+  .pub .j { font-size: .9rem; font-style: italic; }
+  .pub b { color: var(--ink); }
+
+  /* Contact / Join */
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 32px; }
+  @media (max-width: 760px) { .contact-grid { grid-template-columns: 1fr; } }
+  .panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px; }
+  .panel.join { background: var(--accent-soft); border-color: #eccfd4; }
+  address { font-style: normal; color: var(--muted); }
+
+  footer { background: var(--dark); color: #a9a7a1; font-size: .88rem; padding: 36px 0; }
+  footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+  footer a { color: #d7d5cf; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a class="brand" href="#top">Brown Lab<small>Harvard Medical School · BCMP</small></a>
+    <nav>
+      <button class="menu-btn" aria-expanded="false" aria-controls="menu">Menu</button>
+      <ul id="menu">
+        <li><a href="#research">Research</a></li>
+        <li><a href="#team">Team</a></li>
+        <li><a href="#news">News</a></li>
+        <li><a href="#publications">Publications</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow" style="color:#e8687a">Harvard Medical School</div>
+      <h1>Unravelling the secrets of <em>cilia</em></h1>
+      <p>We use a combination of structural, biophysical, and biochemical techniques to understand how cilia are built, how they signal, and how they beat.</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="#research">Our research</a>
+        <a class="btn btn-primary" href="#publications">Our publications</a>
+        <a class="btn btn-primary" href="#team">Our team</a>
+        <a class="btn btn-ghost" href="#contact">Join us</a>
+      </div>
+    </div>
+    <div class="art" role="img" aria-label="Cryo-EM structure of ciliary complexes"></div>
+  </div>
+</section>
+
+<!-- ============ RESEARCH ============ -->
+<section id="research">
+  <div class="wrap">
+    <div class="eyebrow">Research</div>
+    <h2>Ancient organelles, underappreciated machines</h2>
+    <div class="research-intro">
+      <p>Cilia are slender, hair-like projections that extend from the surface of many eukaryotic cells. Motile cilia drive the locomotion of unicellular eukaryotes and sperm, clear mucus from the airways, circulate cerebrospinal fluid, and set up the left–right body axis in the embryo.</p>
+      <p>Primary cilia act as antennae for extracellular signals and play important roles in sensory perception and in the development of many organs and tissues. Our work aims to determine how cilia are formed, how ciliary signaling pathways are established and maintained, and how motile cilia beat.</p>
+    </div>
+
+    <div class="projects">
+      <article class="card">
+        <img src="https://brown.hms.harvard.edu/sites/brown.hms.harvard.edu/files/styles/square_360px/public/images/Axoneme.jpg?itok=MUHJhG4w" alt="Atomic model of the Chlamydomonas axoneme" loading="lazy">
+        <div class="body">
+          <h3>Structure and function of the axoneme</h3>
+          <p>The axoneme is one of the most geometrically complex macromolecular machines in nature. We use cryo-EM to understand, in atomic detail, how it generates ciliary motility.</p>
+          <details>
+            <summary>Read more</summary>
+            <p>Motile axonemes have a “9+2” architecture: nine doublet microtubules (DMTs), each bound by dynein motors and regulatory complexes, encircle a central pair. Dyneins on one DMT pull against a neighbor to cause sliding and bending, with activity alternating across the axoneme to produce the waveform.</p>
+            <p>By biochemically deconstructing <i>Chlamydomonas</i> axonemes, we have resolved DMTs and their microtubule inner proteins, outer dynein arms, radial spokes and the central pair, often with Rui Zhang and Susan Dutcher (WashU). In 2023 we consolidated these into a <a href="https://www.nature.com/articles/s41586-023-06140-2">near-complete atomic model</a> of the axoneme repeat.</p>
+            <p>We are now studying mammalian and human axonemes from airway epithelia and other tissues to understand species-specific adaptations and the causes of motile ciliopathies.</p>
+          </details>
+        </div>
+      </article>
+
+      <article class="card">
+        <img src="https://brown.hms.harvard.edu/sites/brown.hms.harvard.edu/files/styles/square_360px/public/images/ift-a-polymers.jpg?itok=6r9zXxuG" alt="IFT-A polymers" loading="lazy">
+        <div class="body">
+          <h3>Molecular transport in the cilium</h3>
+          <p>Intraflagellar transport (IFT) moves proteins along ciliary microtubules using train-like assemblies of IFT-A, IFT-B and the BBSome. We want to know how it works and how it maintains signaling.</p>
+          <details>
+            <summary>Read more</summary>
+            <p>IFT-B is implicated in trafficking soluble proteins and axonemal precursors, whereas the BBSome and IFT-A are thought to transport membrane proteins. We are interested in the interplay between IFT complexes, microtubules, motors, adaptors and cargoes.</p>
+            <p>We determined structures of the native <a href="https://elifesciences.org/articles/53322">BBSome</a> from bovine retina, revealing its GTPase-dependent activation by ARL6, a structural relationship to clathrin adaptors, and the basis of Bardet–Biedl syndrome mutations. Our structure of native <a href="https://www.cell.com/cell/fulltext/S0092-8674(22)01508-2">IFT-A</a> revealed how it polymerizes into anterograde trains.</p>
+          </details>
+        </div>
+      </article>
+
+      <article class="card">
+        <img src="https://brown.hms.harvard.edu/sites/brown.hms.harvard.edu/files/styles/square_360px/public/images/helix_4x4.jpg?itok=_M-vmjHa" alt="Atomic model fitted into a cryo-EM map" loading="lazy">
+        <div class="body">
+          <h3>Methods for interpreting cryo-EM maps</h3>
+          <p>We develop methods to accelerate cryo-EM structure determination and to build all-atom models that are as accurate as possible.</p>
+          <details>
+            <summary>Read more</summary>
+            <p>With Kiarash Jamali and Sjors Scheres at the MRC-LMB, we helped test and extend <a href="https://www.nature.com/articles/s41586-024-07215-4">ModelAngelo</a>, a deep-learning approach to automated model building and de novo identification of proteins in cryo-EM maps. The software is available on <a href="https://github.com/3dem/model-angelo">GitHub</a>.</p>
+          </details>
+        </div>
+      </article>
+    </div>
+
+    <p style="margin-top:32px;color:var(--muted)">Interested in supporting our research? Please consider a <a href="https://bcmp.hms.harvard.edu/support-our-research">gift to our department</a>.</p>
+  </div>
+</section>
+
+<!-- ============ TEAM ============ -->
+<section id="team">
+  <div class="wrap">
+    <div class="eyebrow">Team</div>
+    <h2>Current members of the Brown lab</h2>
+
+    <div class="team">
+      <div class="person pi">
+        <img src="https://brown.hms.harvard.edu/sites/brown.hms.harvard.edu/files/styles/people_photo/public/people-photo/alan_brown.jpg?itok=KrIFtLAE" alt="Alan Brown" loading="lazy">
+        <div>
+          <h3>Alan Brown</h3>
+          <div class="role">Principal Investigator</div>
+          <p>Alan did his Ph.D. at the University of Cambridge with Tom Blundell and was a postdoc with <a href="https://higginslab.web.ox.ac.uk/">Matt Higgins</a> and <a href="https://www2.mrc-lmb.cam.ac.uk/groups/ribo/">Venki Ramakrishnan</a>. He started at HMS in September 2017 and was named a <a href="https://www.pewtrusts.org/en/projects/pew-biomedical-scholars">Pew Biomedical Scholar</a> in 2019. He was promoted to Associate Professor in January 2023 and Professor in September 2026.</p>
+          <div class="links"><a href="https://orcid.org/0000-0002-0021-0476">ORCiD</a><a href="https://bsky.app/profile/alanbrownhms.bsky.social">Bluesky</a><a href="mailto:alan_brown@hms.harvard.edu">Email</a></div>
+        </div>
+      </div>
+
+      <div class="person">
+        <img src="https://brown.hms.harvard.edu/sites/brown.hms.harvard.edu/files/styles/people_photo/public/people-photo/Matt_Doran_cropped.png?itok=bt1o8J2U" alt="Matt Doran" loading="lazy">
+        <h3>Matt Doran</h3>
+        <div class="role">Postdoctoral Fellow</div>
+        <p>Studies the regulation of ciliary motility.</p>
+        <details><summary>Bio</summary>
+          <p>Matt received his Ph.D. from Boston University in 2022. With <a href="https://www.bumc.bu.edu/camed/profile/william-lehman/">William Lehman</a>, he used cryo-EM and molecular dynamics to understand cardiac muscle contraction and the structural causes of cardiomyopathies. He joined the lab in September 2022 and was awarded a Merck Company Foundation Fellowship in 2023.</p>
+        </details>
+        <div class="links"><a href="https://orcid.org/0000-0002-5224-4133">ORCiD</a><a href="https://bsky.app/profile/matthdoran.bsky.social">Bluesky</a></div>
+      </div>
+
+      <div class="person">
+        <img src="https://brown.hms.harvard.edu/sites/brown.hms.harvard.edu/files/styles/people_photo/public/people-photo/Alice.jpg?itok=126D-ayl" alt="Alice Herneisen" loading="lazy">
+        <h3>Alice Herneisen</h3>
+        <div class="role">Postdoctoral Fellow</div>
+        <p>Studies ubiquitination in ciliary protein homeostasis and signaling, jointly with Susan Shao.</p>
+        <details><summary>Bio</summary>
+          <p>Alice completed her Ph.D. in 2023 with Sebastian Lourido at the Whitehead Institute/MIT, using proteomics to characterize divergent signaling pathways in <i>Toxoplasma gondii</i>. She then studied parasite cell biology as a postdoc with Gira Bhabha and Damian Ekiert at Johns Hopkins. Alice is an HHMI–Helen Hay Whitney Foundation Fellow.</p>
+        </details>
+        <div class="links"><a href="https://orcid.org/0000-0003-3368-0893">ORCiD</a></div>
+      </div>
+
+      <div class="person">
+        <img src="https://brown.hms.harvard.edu/sites/brown.hms.harvard.edu/files/styles/people_photo/public/people-photo/Haixia.JPG?itok=TAesp147" alt="Haixia Zhou" loading="lazy">
+        <h3>Haixia Zhou</h3>
+        <div class="role">Postdoctoral Fellow</div>
+        <p>Studies how cilia are built, from IFT-A to the ciliary transition zone.</p>
+        <details><summary>Bio</summary>
+          <p>Haixia received her Ph.D. from Tsinghua University in 2019, where she studied SARS and MERS coronaviruses. She joined the lab in September 2019, initially as a joint postdoc with <a href="https://walter.hms.harvard.edu/">Dr. Johannes Walter</a> to determine the <a href="https://doi.org/10.1093/nar/gkab1174">structure of CRL2<sup>Lrr1</sup></a>. Using single-particle cryo-EM, she determined the <a href="https://www.cell.com/cell/fulltext/S0092-8674(22)01508-2">structure and polymerization mechanism of the IFT-A complex</a>, then used cryo-FIB-ET on human airway cells to determine the <a href="https://doi.org/10.1126/science.aei5957">in-cell structure of the human ciliary transition zone</a>. She was a BCMP-Merck Postdoctoral Fellow in 2021 and a BCMP Postdoctoral Fellow in 2024.</p>
+        </details>
+        <div class="links"><a href="http://orcid.org/0000-0002-9676-6267">ORCiD</a><a href="https://twitter.com/215Heather">Twitter</a></div>
+      </div>
+
+      <div class="person">
+        <img src="https://brown.hms.harvard.edu/sites/brown.hms.harvard.edu/files/styles/people_photo/public/people-photo/Shimi_Meleppattu_small.png?itok=5gKE-RoZ" alt="Shimi Meleppattu" loading="lazy">
+        <h3>Shimi Meleppattu</h3>
+        <div class="role">Research Associate</div>
+        <p>Studies the mechanisms of intraflagellar transport in <i>Leishmania</i>.</p>
+        <details><summary>Bio</summary>
+          <p>Shimi received her Ph.D. from Pune University, India, studying stress-induced regulation of protein synthesis in protozoan parasites. As a postdoc at Ben-Gurion University and later at HMS, she characterized translational initiation in <i>Leishmania</i>. She joined the lab in 2019 and in 2022 determined the structure of the IFT-A complex.</p>
+        </details>
+      </div>
+
+      <div class="person">
+        <img src="https://brown.hms.harvard.edu/sites/brown.hms.harvard.edu/files/styles/people_photo/public/people-photo/Jeremy_Bennett2.jpg?itok=ZsI-2M3O" alt="Jeremy Bennett" loading="lazy">
+        <h3>Jeremy Bennett</h3>
+        <div class="role">Ph.D. Candidate</div>
+        <p>Studies protein trafficking and quality control in cilia.</p>
+        <details><summary>Bio</summary>
+          <p>Jeremy completed his BS at Bates College, majoring in biology with a chemistry minor. He then spent two years as a research technician in the <a href="https://www.aydinlab.org/">Aydin lab</a> at CU Boulder, using cryo-EM to study mitochondrial membrane-shaping proteins, before starting his PhD at HMS.</p>
+        </details>
+        <div class="links"><a href="https://orcid.org/0000-0003-1262-4868">ORCiD</a><a href="https://bsky.app/profile/jeremyb430.bsky.social">Bluesky</a></div>
+      </div>
+
+      <div class="person">
+        <img src="https://brown.hms.harvard.edu/sites/brown.hms.harvard.edu/files/styles/people_photo/public/people-photo/Tierra_Buck_2.jpg?itok=sG6UMc9f" alt="Tierra Buck" loading="lazy">
+        <h3>Tierra Buck</h3>
+        <div class="role">Ph.D. Candidate</div>
+        <p>Studies intraflagellar transport.</p>
+        <details><summary>Bio</summary>
+          <p>Tierra completed her BS in molecular biology at UC San Diego, then spent two years as a research technician at the La Jolla Institute for Immunology studying arena- and filovirus spike proteins before moving to Boston for her PhD.</p>
+        </details>
+      </div>
+
+      <div class="person">
+        <img src="https://brown.hms.harvard.edu/sites/brown.hms.harvard.edu/files/styles/people_photo/public/people-photo/Ammaar.JPG?itok=7uZiUKBE" alt="Ammaar Saeed" loading="lazy">
+        <h3>Ammaar Saeed</h3>
+        <div class="role">Ph.D. Candidate</div>
+        <p>Studies ciliary proteostasis, jointly supervised by <a href="https://shao.hms.harvard.edu/people">Susan Shao</a>.</p>
+        <details><summary>Bio</summary>
+          <p>Ammaar received his AB in biology and statistics from Harvard College, working with <a href="https://hekstralab.fas.harvard.edu/">Doeke Hekstra</a> on allosteric regulation in PTP-1B. He then completed an MPhil at the MRC-LMB with <a href="https://www2.mrc-lmb.cam.ac.uk/groups/cartera/">Andrew Carter</a>, studying coordination of dynein and kinesin, and joined the lab in September 2025.</p>
+        </details>
+      </div>
+
+      <div class="person">
+        <img src="https://brown.hms.harvard.edu/sites/brown.hms.harvard.edu/files/styles/people_photo/public/people-photo/Hannah_Dayian.png?itok=tUTTBgPD" alt="Hannah Dayian" loading="lazy">
+        <h3>Hannah Dayian</h3>
+        <div class="role">Undergraduate Researcher</div>
+        <p>A third-year biology student at Northeastern University, working with Dr. Haixia Zhou on axoneme assembly.</p>
+      </div>
+    </div>
+
+    <button class="more" id="alumni-toggle" aria-expanded="false" aria-controls="alumni" style="margin-top:40px">Show lab alumni</button>
+    <div class="alumni" id="alumni" hidden>
+      <h2 style="font-size:1.6rem">Alumni</h2>
+      <h3>Postdoctoral fellows</h3>
+      <ul>
+        <li><b>Sven Lange</b> <span>2022–2026</span><br><span>Assistant Professor, Weill Cornell Medicine</span></li>
+        <li><b>Jin Dai</b> <span>2021–2025</span><br><span>Group Leader, Soochow University, China</span></li>
+        <li><b>Travis Walton</b> <span>2019–2024</span><br><span>Assistant Professor, <a href="https://waltonlab.vai.org/">Van Andel Institute</a>; Sloan Fellow 2025</span></li>
+        <li><b>Miao Gui</b> <span>2019–2022</span><br><span>Tenure-track faculty, Zhejiang University, China · <a href="https://miaoguilab.com/">Website</a></span></li>
+        <li><b>Hao Wu</b> <span>2019–2020</span><br><span>Assistant Professor, Rice University</span></li>
+        <li><b>Sandeep K. Singh</b> <span>2017–2021</span><br><span>Lead Researcher, St. Jude Children’s Research Hospital</span></li>
+        <li><b>Adrian Koh</b> <span>2018–2019</span><br><span>Supermicro (previously Thermo Fisher Scientific)</span></li>
+      </ul>
+      <h3>Students</h3>
+      <ul>
+        <li><b>Jacob Anderson</b> <span>2020–2023</span><br><span>Ph.D.; James Tolbert Shipley Prize 2025</span></li>
+        <li><b>Raymond Huang</b> <span>2021–2024</span><br><span>Undergraduate researcher; now pursuing medicine</span></li>
+        <li><b>Josephine Botsch</b> <span>2019</span><br><span>Master’s student; now at the Max Planck Institute of Biochemistry</span></li>
+        <li><b>Val Leifer</b> <span>2017–2019</span><br><span>Undergraduate; MD candidate, Columbia</span></li>
+        <li><b>Matthew Mangel</b> <span>2020</span><br><span>Northeastern co-op student</span></li>
+        <li><b>Erica Sze-Tu</b> <span>2019</span><br><span>Northeastern co-op student</span></li>
+        <li><b>Shahad Taqi</b> <span>2019</span><br><span>Northeastern co-op student</span></li>
+        <li><b>Griffin Rademacher</b> <span>2018</span><br><span>Northeastern co-op student</span></li>
+      </ul>
+      <h3>Research assistants</h3>
+      <ul>
+        <li><b>Joshua David</b> <span>2017–2019</span><br><span>MD candidate, Virginia Commonwealth University</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ NEWS ============ -->
+<section id="news">
+  <div class="wrap">
+    <div class="eyebrow">News</div>
+    <h2>Lab news</h2>
+    <ul class="news">
+      <li><time datetime="2026-09-29">29 Sep 2026</time><div><h3>PKD2 complexes</h3><p>Delighted that the lab could contribute to Karl Lechtreck’s study of genetically and spatially distinct PKD2 complexes in <i>Chlamydomonas</i> flagella, now <a href="https://www.pnas.org/doi/10.1073/pnas.2524371123">published in PNAS</a>.</p></div></li>
+      <li><time datetime="2026-09-10">10 Sep 2026</time><div><h3>Structure of the human transition zone, link to PCD</h3><p>Haixia’s paper is now <a href="https://www.science.org/doi/10.1126/science.aei5957">online at Science</a>.</p></div></li>
+      <li><time datetime="2026-08-31">31 Aug 2026</time><div><h3>Sven’s last day</h3><p>Goodbye, Sven, and good luck at Cornell!</p></div></li>
+      <li><time datetime="2026-08-18">18 Aug 2026</time><div><h3>Matt receives a K99!</h3><p>Congratulations to Matt Doran on receiving a K99 award from the NIAID, the next step toward becoming a PI.</p></div></li>
+      <li><time datetime="2026-08-13">13 Aug 2026</time><div><h3>Former postdoc Hao Wu becomes PI</h3><p>Congratulations to Hao Wu, who begins his own lab at Rice University studying chromatin structure.</p></div></li>
+      <li><time datetime="2026-08-03">3 Aug 2026</time><div><h3>Sven Lange joins Weill Cornell as Assistant Professor</h3><p>His lab will study the structural biochemistry of ubiquitin-mediated transport. <a href="https://www.sven-lange.xyz/">Visit his website</a>.</p></div></li>
+      <li><time datetime="2026-05-22">22 May 2026</time><div><h3>Postdoc positions available</h3><p>We’re looking for new members, especially recent PhD graduates who bring a new technology or perspective. <a href="https://academicpositions.harvard.edu/postings/15526">Apply here</a>.</p></div></li>
+      <li><time datetime="2026-04-16">16 Apr 2026</time><div><h3>Back home</h3><p>Renovations are complete, and the lab is back in our original space.</p></div></li>
+      <li><time datetime="2026-03-05">5 Mar 2026</time><div><h3>Lab (temporarily) relocates</h3><p>While the flood damage is repaired, we have moved to the 3rd floor of SGM.</p></div></li>
+      <li><time datetime="2026-03-01">1 Mar 2026</time><div><h3>R35 starts</h3><p>We thank NIH/NIGMS for their continued support of our research on cilia.</p></div></li>
+      <li><time datetime="2026-01-26">26 Jan 2026</time><div><h3>Lab floods :(</h3><p>A freezing Boston winter plus renovation work led to a burst pipe and a flooded lab.</p></div></li>
+      <li><time datetime="2026-01-26">26 Jan 2026</time><div><h3>Emaline Morris rotates</h3><p>Welcome to Emaline, a G1 in the BBS program, who will study how IFT assembles motile axonemes.</p></div></li>
+      <li><time datetime="2026-01-06">6 Jan 2026</time><div><h3>Owen Eby rotates</h3><p>Owen joins the lab to work alongside Sven on an entirely new project.</p></div></li>
+      <li><time datetime="2026-01-01">1 Jan 2026</time><div><h3>AHA predoctoral fellowship for Jeremy</h3><p>The fellowship will fund his research on the molecular mechanisms of ciliary protein export.</p></div></li>
+      <li><time datetime="2025-10-28">28 Oct 2025</time><div><h3>PQE success</h3><p>Congratulations to Ammaar on passing his PQE!</p></div></li>
+      <li><time datetime="2025-09-02">2 Sep 2025</time><div><h3>Ammaar Saeed joins</h3><p>Ammaar joins as a joint PhD student with the Shao lab to study ciliary proteostasis.</p></div></li>
+      <li><time datetime="2025-08-26">26 Aug 2025</time><div><h3>F31 success for Tierra</h3><p>An NIH F31 predoctoral fellowship will support her research on intraflagellar transport.</p></div></li>
+      <li><time datetime="2025-08-20">20 Aug 2025</time><div><h3>CFAP36 paper published</h3><p>Sven’s paper is <a href="https://www.cell.com/cell/fulltext/S0092-8674(25)00865-7">out in Cell</a>, including biochemistry from Jeremy Bennett, his first paper from the lab.</p></div></li>
+      <li><time datetime="2025-07-29">29 Jul 2025</time><div><h3>Alice Herneisen joins</h3><p>Alice joins from the Bhabha and Ekiert labs at Johns Hopkins as a joint postdoc with the Shao lab.</p></div></li>
+      <li><time datetime="2025-05-01">1 May 2025</time><div><h3>James Tolbert Shipley Prize</h3><p>Jacob wins the 2025 prize for excellent research by a graduating HMS medical student, for his work on mammalian doublet microtubules.</p></div></li>
+      <li><time datetime="2025-04-29">29 Apr 2025</time><div><h3>Cilia housekeeping</h3><p>Sven’s preprint identifying how ubiquitinated proteins are retrieved from cilia is now online.</p></div></li>
+      <li><time datetime="2025-04-28">28 Apr 2025</time><div><h3>Marija Simjanoska rotates</h3><p>Marija joins for a rotation project alongside Haixia.</p></div></li>
+      <li><time datetime="2025-04-14">14 Apr 2025</time><div><h3>Jeremy Bennett joins</h3><p>Jeremy joins for his thesis project on ciliary quality control mechanisms.</p></div></li>
+      <li><time datetime="2025-03-13">13 Mar 2025</time><div><h3><i>Leishmania</i> DMTs</h3><p>Are all the proteins coating the inside of flagellar microtubules important for motility? <a href="https://www.science.org/doi/10.1126/science.adr5507">Our latest study in Science</a> addresses this using trypanosomatids.</p></div></li>
+      <li><time datetime="2025-02-18">18 Feb 2025</time><div><h3>Sloan Fellowship for Travis</h3><p>Former postdoc Travis Walton is named a <a href="https://sloan.org/fellowships/2025-Fellows">2025 Sloan Research Fellow</a>.</p></div></li>
+      <li><time datetime="2025-01-20">20 Jan 2025</time><div><h3>Jin departs to become PI</h3><p>Jin Dai leaves to start his own group in Suzhou, China, continuing his studies of <i>Chlamydomonas</i> flagella.</p></div></li>
+      <li><time datetime="2025-01-01">1 Jan 2025</time><div><h3>First paper of the new year</h3><p>Our paper on <a href="https://www.nature.com/articles/s41586-024-08337-5">axonemes from different mammalian tissues</a> is online at Nature, with Rui Zhang and Tzviya Zeev-Ben-Mordehai.</p></div></li>
+      <li><time datetime="2024-12-04">4 Dec 2024</time><div><h3>Postdoc position available</h3><p>Projects span ciliary motility and the regulation of ciliary signaling pathways.</p></div></li>
+      <li><time datetime="2024-09-23">23 Sep 2024</time><div><h3>Tierra Buck joins</h3><p>Tierra joins for her PhD thesis project on intraflagellar transport.</p></div></li>
+      <li><time datetime="2024-09-18">18 Sep 2024</time><div><h3>Ammaar and Jean rotate</h3><p>Welcome to rotation students Ammaar Saeed and Jean Beltram.</p></div></li>
+      <li><time datetime="2024-07-22">22 Jul 2024</time><div><h3>NSF funding</h3><p>Thanks to the NSF for funding our work with Eva Gluenz on how axonemes allow parasites to move.</p></div></li>
+      <li><time datetime="2024-05-20">20 May 2024</time><div><h3>Goodbye Raymond</h3><p>After three years in the lab, Raymond leaves to pursue his dream of becoming a doctor.</p></div></li>
+      <li><time datetime="2024-04-29">29 Apr 2024</time><div><h3>Asst. Prof. Travis Walton!</h3><p>Travis accepts a tenure-track position at the Van Andel Institute to study neuronal microtubules.</p></div></li>
+      <li><time datetime="2024-04-25">25 Apr 2024</time><div><h3>TUBB4B ciliopathies</h3><p>Our contribution to a <a href="https://www.science.org/doi/10.1126/science.adf5489">study linking tubulin mutations to ciliopathies</a> is published in Science.</p></div></li>
+      <li><time datetime="2024-04-11">11 Apr 2024</time><div><h3>Mastigoneme structure</h3><p>Jin’s work on the mastigoneme is <a href="https://www.cell.com/cell/fulltext/S0092-8674(24)00253-8">published in Cell</a>.</p></div></li>
+      <li><time datetime="2024-04-01">1 Apr 2024</time><div><h3>Cryo-EM of ciliary microtubules</h3><p>Travis and Matt’s review is the cover article for Acta Cryst D.</p></div></li>
+      <li><time datetime="2024-02-05">5 Feb 2024</time><div><h3>C&amp;EN cover</h3><p>Travis’s structure of the <i>Chlamydomonas</i> axoneme makes the cover of C&amp;EN.</p></div></li>
+      <li><time datetime="2023-10-18">18 Oct 2023</time><div><h3>New funding</h3><p>Thank you to the Smith Family Foundation for their continued support.</p></div></li>
+      <li><time datetime="2023-08-31">31 Aug 2023</time><div><h3>Successful thesis defense!</h3><p>Jacob defends his Ph.D. thesis and returns to medical school to finish his M.D.</p></div></li>
+      <li><time datetime="2023-05-31">31 May 2023</time><div><h3>Atomic models of axonemes</h3><p>Travis and Miao’s structures of axonemes are <a href="https://www.nature.com/articles/s41586-023-06140-2">online at Nature</a>.</p></div></li>
+      <li><time datetime="2023-01-19">19 Jan 2023</time><div><h3>Promotion</h3><p>Thanks to the hard work of lab members past and present, Alan is promoted to Associate Professor.</p></div></li>
+      <li><time datetime="2022-12-22">22 Dec 2022</time><div><h3>IFT-A structure</h3><p>Our paper on the structure and polymerization mechanism of native IFT-A is <a href="https://www.cell.com/cell/fulltext/S0092-8674(22)01508-2">published in Cell</a>.</p></div></li>
+    </ul>
+    <button class="more" id="news-more">Show all news</button>
+  </div>
+</section>
+
+<!-- ============ PUBLICATIONS ============ -->
+<section id="publications">
+  <div class="wrap">
+    <div class="eyebrow">Publications</div>
+    <h2>Publications</h2>
+    <div class="pub-tools">
+      <input type="search" id="pub-search" placeholder="Search by title, author or journal…" aria-label="Search publications">
+      <span class="pub-count" id="pub-count"></span>
+    </div>
+    <div id="pubs"></div>
+    <button class="more" id="pubs-more">Show all publications</button>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact">
+  <div class="wrap">
+    <div class="eyebrow">Contact</div>
+    <h2>Get in touch</h2>
+    <div class="contact-grid">
+      <div class="panel">
+        <h3>Alan Brown, Ph.D.</h3>
+        <address>
+          Professor<br>
+          Department of Biological Chemistry &amp; Molecular Pharmacology<br>
+          Harvard Medical School, C-249A<br>
+          240 Longwood Avenue<br>
+          Boston, MA 02115, USA
+        </address>
+        <p><a href="mailto:alan_brown@hms.harvard.edu">alan_brown@hms.harvard.edu</a></p>
+        <p><a href="https://bcmp.hms.harvard.edu/support-our-research">Support our research →</a></p>
+      </div>
+      <div class="panel join">
+        <h3>Join us</h3>
+        <p>Send an email to <a href="mailto:alan_brown@hms.harvard.edu">alan_brown@hms.harvard.edu</a> if you are enthusiastic about protein structures, hard-working, and a little bit of a dreamer.</p>
+        <p><a class="btn btn-primary" href="https://academicpositions.harvard.edu/postings/15526">Current postdoc opening</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© Brown Lab · <a href="http://bcmp.med.harvard.edu/">BCMP</a> · <a href="http://hms.harvard.edu/">Harvard Medical School</a></span>
+    <a href="https://accessibility.huit.harvard.edu/digital-accessibility-policy">Accessibility</a>
+  </div>
+</footer>
+
+<script>
+/* ---------- Publications ----------
+   To add a paper, add a line to the top of this list:
+   [year, "Title", "Authors", "Journal; volume", "https://link"]            */
+const PUBS = [
+  [2026,"PKD2-like proteins target Chlamydomonas PKD2 to distinct subciliary regions","Das P, Zhou H, Sureshkumar S, Chasen N, Dai J, Brown A, Lechtreck K","Proc. Natl. Acad. Sci. USA; 123(40): e2524371123","https://www.pnas.org/doi/10.1073/pnas.2524371123"],
+  [2026,"In situ structure of the human ciliary transition zone links linker defects to primary ciliary dyskinesia","Zhou H, Terbeck L, Berical A, Brunet M, Lange SM, Anderson JR, Olbrich H, Bracht DC, Wohlgemuth K, Rieck C, Raidt J, Klingauf J, Sutharsan S, Mussaffi H, Prais D, Dunphy V, Homma ST, Guichard P, Hamel V, Hawkins FJ, Omran H, Brown A","Science; doi: 10.1126/science.aei5957","https://www.science.org/doi/10.1126/science.aei5957"],
+  [2026,"Conformational landscape of integrin α4β1 and its recognition of VCAM and conformation-stabilizing small molecules","López-Sánchez U, Monroy M, Qiao Q, Lee J, Kesarwani S, Zhou Z, Brown A, Lin F-Y, Springer TA","Preprint; doi: 10.21203/rs.3.rs-8928859/v1","https://www.researchsquare.com/article/rs-8928859/v1"],
+  [2026,"Atomic models of the Toxoplasma cell invasion machinery","Zeng J, Fu Y, Qian P, Huang W, Niu Q, Beatty WL, Brown A, Sibley LD, Zhang R","Nat. Struct. Mol. Biol.; 33(1): 157–170","https://www.nature.com/articles/s41594-025-01728-w"],
+  [2025,"Proteome-wide in silico screening for human protein-protein interactions","Schmid EW, Zhu H, Ryu E, Lim Y, Smogorzewska A, Brown A, Walter JC","bioRxiv; doi: 10.1101/2025.11.10.687652","https://www.biorxiv.org/content/10.1101/2025.11.10.687652v1"],
+  [2025,"Axonemal dynein contributions to flagellar beat types and waveforms","Fochler S, Doran MH, Beneke T, Smith J, Fort C, Walker BJ, Brown A, Gluenz E, Wheeler RJ","bioRxiv; doi: 10.1101/2025.11.06.687033","https://www.biorxiv.org/content/10.1101/2025.11.06.687033v1"],
+  [2025,"A conserved mechanism for the retrieval of polyubiquitinated proteins from cilia","Lange SM, Bennett JA, Eisert RJ, Brown A","Cell; 188(23): 6492–6508.e18","https://www.cell.com/cell/fulltext/S0092-8674(25)00865-7"],
+  [2025,"Evolutionary adaptations of doublet microtubules in trypanosomatid parasites","Doran MH, Niu Q, Zeng J, Beneke T, Smith J, Ren P, Fochler S, Coscia A, Höög JL, Meleppattu S, Lishko PV, Wheeler RJ, Gluenz E, Zhang R, Brown A","Science; 387(6739)","https://www.science.org/doi/10.1126/science.adr5507"],
+  [2025,"TRiC is a structural component of mammalian sperm axonemes","Brown A, Leung MR, Zeev-Ben-Mordehai T, Zhang R","Cytoskeleton; 82(12): 791–794","https://onlinelibrary.wiley.com/doi/10.1002/cm.22005"],
+  [2025,"Structural diversity of axonemes across mammalian motile cilia","Leung MR, Sun C, Zeng J, Anderson JR, Niu Q, Huang W, Noteborn WEM, Brown A, Zeev-Ben-Mordehai T, Zhang R","Nature; 637: 1170–1177","https://www.nature.com/articles/s41586-024-08337-5"],
+  [2024,"Ciliopathy patient variants reveal organelle-specific functions for TUBB4B in axonemal microtubules","Dodd OD, Mechaussier S, Yeyati PL, McPhie F, Anderson JA, et al.","Science; 384(6694): eadf5489","https://www.science.org/doi/10.1126/science.adf5489"],
+  [2024,"Mastigoneme structure reveals insights into the O-linked glycosylation code of native hydroxyproline-rich helices","Dai J, Ma M, Niu Q, Eisert RJ, Wang X, Das P, Lechtreck K, Dutcher SK, Zhang R, Brown A","Cell; 187(8): 1907–1921.e16","https://www.cell.com/cell/fulltext/S0092-8674(24)00253-8"],
+  [2024,"Structural determination and modeling of ciliary microtubules","Walton T, Doran M, Brown A","Acta Cryst. D; 80: 220–231","https://onlinelibrary.wiley.com/iucr/doi/10.1107/S2059798324001815"],
+  [2024,"Automated model building and protein identification in cryo-EM maps","Jamali K, Käll L, Zhang R, Brown A, Kimanius D, Scheres S","Nature; 628(8007): 450–457","https://www.nature.com/articles/s41586-024-07215-4"],
+  [2023,"Structural specializations of the sperm tail","Leung MR, Zeng J, Wang X, Roelofs MC, Huang W, Chiozzi RZ, Hevler JF, Heck AJR, Dutcher SK, Brown A, Zhang R, Zeev-Ben-Mordehai T","Cell; 186(13): 2880–2896.e17","https://www.cell.com/cell/fulltext/S0092-8674(23)00576-7"],
+  [2023,"Axonemal structures reveal mechanoregulatory and disease mechanisms","Walton T, Gui M, Velkova S, Fassad MR, Hirst RA, Haarman E, O'Callaghan C, Bottier M, Burgoyne T, Mitchison HM, Brown A","Nature; 618: 625–633","https://www.nature.com/articles/s41586-023-06140-2"],
+  [2023,"Ciliary radial spokes","Brown A, Alford LM, Yang P","The Chlamydomonas Sourcebook, Vol. 3, 3rd ed.","https://www.elsevier.com/books/the-chlamydomonas-sourcebook/dutcher/978-0-12-822508-0"],
+  [2022,"Mechanism of IFT-A polymerization into trains for ciliary transport","Meleppattu S, Zhou H, Dai J, Gui M, Brown A","Cell; 185: 4986–4998","https://www.cell.com/cell/fulltext/S0092-8674(22)01508-2"],
+  [2022,"Didemnin B and ternatin-4 inhibit conformational changes in eEF1A required for aminoacyl-tRNA accommodation into mammalian ribosomes","Juette MF, Carelli JD, Rundlet EJ, Brown A, Shao S, Ferguson A, Wasserman MR, Holm M, Taunton J, Blanchard SC","eLife; 11: e81608","https://elifesciences.org/articles/81608"],
+  [2022,"SPACA9 is a lumenal protein of human ciliary singlet and doublet microtubules","Gui M, Croft JT, Zabeo D, Acharya V, Kollman JM, Burgoyne T, Höög JL, Brown A","Proc. Natl. Acad. Sci. USA; 119(41): e2207605119","https://www.pnas.org/doi/full/10.1073/pnas.2207605119"],
+  [2022,"Modern and future methods for studying macromolecular assemblies in action","Brown A, Fraternali F","Curr. Opin. Struct. Biol.; 75: 102438","https://doi.org/10.1016/j.sbi.2022.102438"],
+  [2022,"Structures of VWF tubules before and after concatemerization reveal a mechanism of disulfide bond exchange","Anderson JR, Li J, Springer TA, Brown A","Blood; 140(12): 1419–1430","https://ashpublications.org/blood/article/doi/10.1182/blood.2022016467/485761/Structures-of-VWF-tubules-before-and-after"],
+  [2022,"Ciliary central apparatus structure reveals mechanisms of microtubule patterning","Gui M, Wang X, Dutcher SK, Brown A, Zhang R","Nat. Struct. Mol. Biol.; 29: 483–492","https://www.nature.com/articles/s41594-022-00770-2"],
+  [2021,"Structure of CRL2<sup>Lrr1</sup>, the E3 ubiquitin ligase that promotes DNA replication termination in vertebrates","Zhou H, Zaher MS, Walter JC, Brown A","Nucleic Acids Res.; 49: 13194–13206","https://doi.org/10.1093/nar/gkab1174"],
+  [2021,"De novo identification of mammalian ciliary motility proteins using cryo-EM","Gui M, Farley H, Anujan P, Anderson JR, Maxwell DW, Whitchurch JB, Botsch JJ, Qui T, Meleppattu S, Singh SK, Zhang Q, Thompson J, Lucas JS, Bingle CD, Norris DP, Roy S, Brown A","Cell; 184: 5791–5806","https://www.cell.com/cell/fulltext/S0092-8674(21)01181-8"],
+  [2021,"Cryo-EM structure of cortical microtubules from human parasite Toxoplasma gondii identifies their microtubule inner proteins","Wang X, Fu Y, Beatty WL, Ma M, Brown A, Sibley LD, Zhang R","Nat. Commun.; 12: 3065","https://www.nature.com/articles/s41467-021-23351-1"],
+  [2021,"Cryo-EM structure of an activated GPCR-G protein complex in lipid nanodiscs","Zhang M, Gui M, Wang Z-F, Gorgulla C, Yu JJ, Wu H, Sun Z-Y, Klenk C, Merklinger L, Morstein L, Hagn F, Plückthun A, Brown A, Nasr ML, Wagner G","Nat. Struct. Mol. Biol.; 28: 258–267","https://www.nature.com/articles/s41594-020-00554-6"],
+  [2021,"Structure of a microtubule-bound axonemal dynein","Walton T, Wu H, Brown A","Nat. Commun.; 12: 477","https://www.nature.com/articles/s41467-020-20735-7"],
+  [2021,"Structures of radial spokes and associated complexes important for ciliary motility","Gui M, Ma M, Sze-Tu E, Wang X, Koh F, Zhong ED, Berger B, Davis JH, Dutcher SK, Zhang R, Brown A","Nat. Struct. Mol. Biol.; 28: 29–37","https://www.nature.com/articles/s41594-020-00530-0"],
+  [2020,"Primary cilia: a closer look at the antenna of cells","Brown A, Zhang R","Curr. Biol.; 30(24): R1494–R1496","https://www.cell.com/current-biology/fulltext/S0960-9822(20)31661-4"],
+  [2020,"Structure and activation mechanism of the BBSome membrane protein trafficking complex","Singh SK, Gui M, Koh F, Yip MCJ, Brown A","eLife; 9: e53322","https://elifesciences.org/articles/53322"],
+  [2019,"Mechanism of ribosome stalling during translation of a poly(A) tail","Chandrasekaran V, Juszkiewicz S, Choi J, Puglisi JD, Brown A, Shao S, Ramakrishnan V, Hegde RS","Nat. Struct. Mol. Biol.; 26: 1132–1140","https://www.nature.com/articles/s41594-019-0331-x"],
+  [2019,"Structure of the decorated ciliary doublet microtubule","Ma M, Stoyanova M, Rademacher G, Dutcher SK, Brown A, Zhang R","Cell; 179(4): 909–922","https://www.cell.com/action/showPdf?pii=S0092-8674%2819%2931081-5"],
+  [2019,"Structural patching fosters divergence of mitochondrial ribosomes","Petrov A, Wood EC, Bernier CR, Norris AM, Brown A, Amunts A","Mol. Biol. Evol.; 36(2): 207–219","https://academic.oup.com/mbe/article/36/2/207/5229934"],
+  [2018,"Tiny crystals have big potential for determining structures of small molecules","Brown A, Clardy J","Nature; 564: 348–349","https://www.nature.com/articles/d41586-018-07756-5"],
+  [2018,"Structures of translationally inactive mammalian ribosomes","Brown A, Baird MR, Yip MCJ, Murray J, Shao S","eLife; 7: e40486","https://elifesciences.org/articles/40486"],
+  [2018,"Ribosomes and cryo-EM: a duet","Brown A, Shao S","Curr. Opin. Struct. Biol.; 52: 1–7","https://www.sciencedirect.com/science/article/pii/S0959440X17301781"],
+  [2017,"Structures of the human mitochondrial ribosome in native states of assembly","Brown A, Rathore S, Kimanius D, Aibara S, Bai X-C, Rorbach J, Amunts A, Ramakrishnan V","Nat. Struct. Mol. Biol.; 24: 866–869","https://doi.org/10.1038/nsmb.3464"],
+  [2017,"Mefloquine targets the Plasmodium falciparum 80S ribosome to inhibit protein synthesis","Wong W, Bai X-C, Sleebs BE, Triglia T, Brown A, Thompson JK, Jackson KE, Hanssen E, Marapana DS, Fernandez IS, Ralph SA, Cowman AF, Scheres SHW, Baum J","Nat. Microbiol.; 2: 17031","https://doi.org/10.1038/nmicrobiol.2017.31"],
+  [2017,"The structure of the yeast mitochondrial ribosome","Desai N, Brown A, Amunts A, Ramakrishnan V","Science; 355(6324): 528–531","http://science.sciencemag.org/content/355/6324/528.long"],
+  [2016,"Translational termination without a stop codon","James NR, Brown A, Gordiyenko Y, Ramakrishnan V","Science; 354(6318): 1437–1440","http://science.sciencemag.org/content/354/6318/1437.long"],
+  [2016,"Decoding mammalian ribosome-mRNA states by translational GTPase complexes","Shao S*, Murray J*, Brown A*, Taunton J, Ramakrishnan V, Hegde RS","Cell; 167(5): 1229–1240","https://doi.org/10.1016/j.cell.2016.10.046"],
+  [2016,"Ribosome-dependent activation of stringent control","Brown A*, Fernández IS*, Gordiyenko Y, Ramakrishnan V","Nature; 534(7606): 277–280","https://www.nature.com/articles/nature17675"],
+  [2016,"Organisation and regulation of mitochondrial protein synthesis","Ott M, Amunts A, Brown A","Annu. Rev. Biochem.; 85: 77–101","https://www.annualreviews.org/doi/full/10.1146/annurev-biochem-060815-014334"],
+  [2015,"Mapping the binding site of a cross-reactive Plasmodium falciparum PfEMP1 monoclonal antibody inhibitory of ICAM-1 binding","Lennartz F, Bengtsson A, Olsen RW, Joergensen L, Brown A, Remy L, Man P, Forest E, Barfod LK, Adams Y, Higgins MK, Jensen ATR","J. Immunol.; 195(7): 3273–3283","http://www.jimmunol.org/content/195/7/3273.long"],
+  [2015,"Structural basis for stop codon recognition in eukaryotes","Brown A*, Shao S*, Murray J, Hegde RS, Ramakrishnan V","Nature; 524(7566): 493–496","https://www.nature.com/articles/nature14896"],
+  [2015,"Mechanistic origin of microtubule dynamic instability and its modulation by EB proteins","Zhang R, Alushin GM, Brown A, Nogales E","Cell; 162(4): 849–859","https://doi.org/10.1016/j.cell.2015.07.012"],
+  [2015,"The structure of the human mitochondrial ribosome","Amunts A*, Brown A*, Toots J, Scheres SHW, Ramakrishnan V","Science; 348(6230): 95–98","http://science.sciencemag.org/content/348/6230/95.long"],
+  [2015,"Structure and assembly pathway of the ribosome quality control complex","Shao S, Brown A, Santhanam B, Hegde RS","Mol. Cell; 57(3): 433–444","https://doi.org/10.1016/j.molcel.2014.12.015"],
+  [2015,"Tools for macromolecular model building and refinement into electron cryo-microscopy reconstructions","Brown A, Long F, Nicholls RA, Toots J, Emsley P, Murshudov G","Acta Cryst. D; 71: 136–153","http://scripts.iucr.org/cgi-bin/paper?S1399004714021683"],
+  [2014,"Structure of the large ribosomal subunit from human mitochondria","Brown A*, Amunts A*, Bai X-C, Sugimoto Y, Edwards PC, Murshudov G, Scheres SHW, Ramakrishnan V","Science; 346(6210): 718–722","http://science.sciencemag.org/content/346/6210/718.long"],
+  [2014,"Structure of the malaria parasite 80S ribosome bound to the anti-protozoan drug emetine","Wong W*, Bai X-C*, Brown A*, Fernández IS, Hanssen E, Condron M, Tan YH, Baum J, Scheres SHW","eLife; 3: e03080","https://elifesciences.org/content/3/e03080"],
+  [2014,"Structure of the yeast mitochondrial large ribosomal subunit","Amunts A*, Brown A*, Bai X-C*, Llacer JL*, Hussain T, Emsley P, Long F, Murshudov G, Scheres SHW, Ramakrishnan V","Science; 343(6178): 1485–1489","http://science.sciencemag.org/content/343/6178/1485.long"],
+  [2014,"The crystal structure of fibroblast growth factor 18","Brown A, Adam LE, Blundell TL","Protein Cell; 5(5): 343–347","https://doi.org/10.1007/s13238-014-0033-4"],
+  [2014,"From (+)-epigallocatechin gallate to a simplified synthetic analogue as a cytoadherence inhibitor for P. falciparum","Gemma S, Brogi S, Patil PR, Giovani S, Lamponi S, Cappelli A, Novellino E, Brown A, Higgins MK, Mustafa K, Szestak T, Craig AG, Campiani G, Butini S, Brindisi M","RSC Advances; 4: 4769–4781","https://doi.org/10.1039/C3RA45933K"],
+  [2013,"Molecular mechanism of SSR128129E, an extracellularly acting, small-molecule, allosteric inhibitor of FGF receptor signalling","Herbert C, Schieborr U, Saxena K, Juraszek J, de Smet F, Alcouffe C, Bianciotto M, Saladino G, Sibrac D, Kudlinzki D, Sreeramulu S, Brown A, Rigon P, Herault J-P, Lassalle G, Blundell TL, Rousseau F, Gils A, Schymkowitz J, Tompa P, Herbert JM, Carmeliet P, Gervasio FL, Schwalbe H, Bono F","Cancer Cell; 23(4): 489–501","http://www.cell.com/cancer-cell/abstract/S1535-6108(13)00074-3"],
+  [2013,"Cooperative heparin-mediated oligomerization of fibroblast growth factor-1 (FGF1) precedes recruitment of FGFR2 to ternary complexes","Brown A, Robinson CJ, Gallagher JT, Blundell TL","Biophys. J.; 104(8): 1720–1730","http://www.cell.com/biophysj/abstract/S0006-3495(13)00288-9"],
+  [2013,"Molecular architecture of a complex between an adhesion protein from the malaria parasite and intracellular adhesion molecule 1","Brown A, Turner L, Christoffersen S, Zhao Y, Szestak T, Craig AG, Higgins MK","J. Biol. Chem.; 288(8): 5992–6003","http://www.jbc.org/content/288/8/5992.long"],
+  [2013,"Structure of the trypanosome haptoglobin-hemoglobin receptor and implications for nutrient uptake and innate immunity","Higgins MK, Tkachenko O, Brown A, Reed J, Carrington M","Proc. Natl. Acad. Sci. USA; 110(5): 1905–1910","http://www.pnas.org/content/110/5/1905.long"],
+  [2013,"A novel domain cassette identifies Plasmodium falciparum PfEMP1 proteins binding ICAM-1 and is a target of cross-reactive, adhesion-inhibitory antibodies","Bengtsson A, Joergensen L, Rask TS, Olsen RW, Andersen MA, Turner L, Theander TG, Hviid L, Higgins MK, Craig A, Brown A, Jensen AT","J. Immunol.; 190(1): 240–249","http://www.jimmunol.org/content/190/1/240.long"],
+  ["Pre-2013","Carbohydrate binding molecules in malaria pathology","Brown A, Higgins MK","Curr. Opin. Struct. Biol.; 20(5): 560–566","https://doi.org/10.1016/j.sbi.2010.06.008"],
+  ["Pre-2013","Structural interactomics: informatics approaches to aid the interpretation of genetic variation and the development of novel therapeutics","Lee S*, Brown A*, Pitt WR*, Higueruelo A, Bickerton GR, Gong S, Schreyer A, Tanramluk D, Blundell TL","Mol. Biosyst.; 5(12): 1456–1472","https://doi.org/10.1039/B906402h"],
+  ["Pre-2013","Analysis of cooperativity by isothermal titration calorimetry","Brown A","Int. J. Mol. Sci.; 10(8): 3457–3477","http://www.mdpi.com/1422-0067/10/8/3457"],
+];
+
+const pubsEl = document.getElementById('pubs');
+const countEl = document.getElementById('pub-count');
+const esc = s => s.replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+const boldPI = a => esc(a).replace(/Brown A\*?/g, m => `<b>${m}</b>`);
+
+/* Show the 10 most recent papers until "Show all" is clicked; searching always shows every match.
+   Papers are sorted newest year first, so a new paper can be added anywhere in the list. */
+const PUBS_SHOWN = 10;
+const yearKey = y => (typeof y === 'number' ? y : 0);   // "Pre-2013" sorts last
+PUBS.sort((a, b) => yearKey(b[0]) - yearKey(a[0]));
+const pubsMore = document.getElementById('pubs-more');
+let showAllPubs = false;
+
+function renderPubs(q = '') {
+  q = q.trim().toLowerCase();
+  let hits = PUBS.filter(p => !q || p.slice(1, 4).join(' ').toLowerCase().includes(q));
+  const total = hits.length;
+  const truncate = !q && !showAllPubs;
+  if (truncate) hits = hits.slice(0, PUBS_SHOWN);
+  pubsMore.hidden = !!q;
+  pubsMore.textContent = showAllPubs ? 'Show fewer publications' : 'Show all publications';
+  const years = [...new Set(hits.map(p => p[0]))];
+  pubsEl.innerHTML = years.map(y => `
+    <div class="year"><h3>${y}</h3>
+      ${hits.filter(p => p[0] === y).map(p => `
+        <div class="pub">
+          <div class="t"><a href="${p[4]}" style="color:inherit">${p[1]}</a></div>
+          <div class="a">${boldPI(p[2])}</div>
+          <div class="j">${esc(p[3])}</div>
+        </div>`).join('')}
+    </div>`).join('');
+  countEl.textContent = q ? `${total} of ${PUBS.length} papers` : `${hits.length} of ${PUBS.length} papers`;
+}
+const pubSearch = document.getElementById('pub-search');
+renderPubs();
+pubSearch.addEventListener('input', e => renderPubs(e.target.value));
+pubsMore.addEventListener('click', () => {
+  showAllPubs = !showAllPubs;
+  renderPubs(pubSearch.value);
+  if (!showAllPubs) document.getElementById('publications').scrollIntoView();
+});
+
+/* ---------- News: show the 8 most recent items, then "Show all" ----------
+   Items are sorted by their <time datetime="..."> date, newest first,
+   so a new item can be added anywhere in the list. */
+const NEWS_SHOWN = 8;
+const newsList = document.querySelector('.news');
+const newsItems = [...newsList.children].sort((a, b) =>
+  b.querySelector('time').getAttribute('datetime').localeCompare(a.querySelector('time').getAttribute('datetime')));
+newsItems.forEach(li => newsList.appendChild(li));
+const moreBtn = document.getElementById('news-more');
+newsItems.forEach((li, i) => { if (i >= NEWS_SHOWN) li.classList.add('hidden'); });
+moreBtn.addEventListener('click', () => {
+  const expanding = moreBtn.textContent.startsWith('Show all');
+  newsItems.forEach((li, i) => { if (i >= NEWS_SHOWN) li.classList.toggle('hidden', !expanding); });
+  moreBtn.textContent = expanding ? 'Show less' : 'Show all news';
+});
+
+/* ---------- Alumni: hidden until the button is clicked ---------- */
+const alumniBtn = document.getElementById('alumni-toggle');
+const alumni = document.getElementById('alumni');
+alumniBtn.addEventListener('click', () => {
+  alumni.hidden = !alumni.hidden;
+  alumniBtn.setAttribute('aria-expanded', !alumni.hidden);
+  alumniBtn.textContent = alumni.hidden ? 'Show lab alumni' : 'Hide lab alumni';
+});
+
+/* ---------- Mobile menu ---------- */
+const menuBtn = document.querySelector('.menu-btn');
+const menu = document.getElementById('menu');
+menuBtn.addEventListener('click', () => {
+  const open = menu.classList.toggle('open');
+  menuBtn.setAttribute('aria-expanded', open);
+});
+menu.addEventListener('click', e => { if (e.target.tagName === 'A') menu.classList.remove('open'); });
+</script>
+</body>
+</html>
