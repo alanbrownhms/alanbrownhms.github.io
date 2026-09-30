@@ -92,14 +92,14 @@
   /* Team */
   .team { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 24px; margin-top: 36px; }
   .person { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; }
-  .person img { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; margin-bottom: 14px; background: var(--line); }
+  .person img { width: 124px; height: 124px; border-radius: 50%; object-fit: cover; margin-bottom: 14px; background: var(--line); }
   .person h3 { margin-bottom: 2px; }
   .person .role { color: var(--accent); font-size: .85rem; font-weight: 600; margin-bottom: 10px; }
   .person p { font-size: .9rem; color: var(--muted); margin: 0 0 10px; }
   .person .links { font-size: .85rem; display: flex; gap: 12px; }
   .person details summary { font-size: .85rem; }
-  .pi { grid-column: 1 / -1; display: grid; grid-template-columns: 160px 1fr; gap: 28px; align-items: start; }
-  .pi img { width: 160px; height: 160px; }
+  .pi { grid-column: 1 / -1; display: grid; grid-template-columns: 192px 1fr; gap: 28px; align-items: start; }
+  .pi img { width: 192px; height: 192px; }
   @media (max-width: 560px) { .pi { grid-template-columns: 1fr; } }
 
   .alumni { margin-top: 32px; }
@@ -112,6 +112,52 @@
   .alumni details summary { font-size: .85rem; }
   .alumni details p { color: var(--muted); margin: 0 0 6px; }
   .alumni .links { font-size: .85rem; }
+  .alumni ul.compact { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+  .alumni ul.compact li { padding: 8px 0; }
+
+  /* Milestones timeline */
+  .tl-filters { display: flex; gap: 8px; flex-wrap: wrap; margin: 28px 0 20px; }
+  .tl-filters button { background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 7px 14px; font: 500 .85rem Inter, sans-serif; color: var(--ink); cursor: pointer; }
+  .tl-filters button:hover { border-color: var(--accent); }
+  .tl-filters button[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: #fff; }
+  .tl-shell { position: relative; }
+  .tl-track { list-style: none; margin: 0; padding: 30px 4px 8px; display: flex; overflow-x: auto; scroll-snap-type: x proximity; scrollbar-width: thin; position: relative; }
+  .tl-track li::before { content: ""; position: absolute; left: 0; right: 0; top: 12px; height: 2px; background: var(--line); }
+  .tl-track li { flex: 0 0 140px; position: relative; scroll-snap-align: center; }
+  .tl-track li[hidden] { display: none; }
+  .tl-year { position: absolute; top: -26px; left: 10px; font: 600 .78rem Inter, sans-serif; color: var(--muted); letter-spacing: .06em; }
+  .tl-item { display: block; width: 100%; background: none; border: 0; padding: 0 10px; text-align: left; cursor: pointer; font: inherit; color: var(--ink); }
+  .tl-dot { display: block; width: 14px; height: 14px; border-radius: 50%; background: var(--bg); border: 2px solid var(--muted); margin: 6px 0 12px; position: relative; z-index: 1; transition: transform .15s; }
+  .tl-item[data-theme="transport"] .tl-dot { border-color: #2f6f9f; }
+  .tl-item[data-theme="gate"] .tl-dot { border-color: #7a5aa6; }
+  .tl-item[data-theme="motility"] .tl-dot { border-color: var(--accent); }
+  .tl-label { display: block; font-size: .85rem; line-height: 1.35; color: var(--muted); }
+  .tl-item:hover .tl-label { color: var(--ink); }
+  .tl-item:hover .tl-dot { transform: scale(1.25); }
+  .tl-item[aria-current="true"] .tl-dot { background: var(--accent); border-color: var(--accent); transform: scale(1.35); }
+  .tl-item[aria-current="true"][data-theme="transport"] .tl-dot { background: #2f6f9f; border-color: #2f6f9f; }
+  .tl-item[aria-current="true"][data-theme="gate"] .tl-dot { background: #7a5aa6; border-color: #7a5aa6; }
+  .tl-item[aria-current="true"] .tl-label { color: var(--ink); font-weight: 600; }
+  .tl-item:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 6px; }
+  .tl-detail { margin-top: 20px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px 28px; display: grid; grid-template-columns: 1fr auto; gap: 8px 24px; align-items: start; }
+  .tl-meta { font-size: .82rem; color: var(--muted); font-weight: 500; }
+  .tl-tag { display: inline-block; margin-left: 8px; padding: 1px 9px; border-radius: 999px; font-size: .75rem; font-weight: 600; background: var(--accent-soft); color: var(--accent); }
+  .tl-tag.transport { background: #e6eff6; color: #2f6f9f; }
+  .tl-tag.gate { background: #efe9f6; color: #7a5aa6; }
+  .tl-detail h3 { grid-column: 1 / -1; margin: 4px 0 2px; font-size: 1.3rem; }
+  .tl-detail p { grid-column: 1 / -1; margin: 0; color: var(--muted); max-width: 75ch; }
+  .tl-cite { grid-column: 1 / -1; font-size: .88rem; color: var(--muted); }
+  .tl-cite i { color: var(--ink); }
+  .tl-links { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 10px; font-size: .85rem; }
+  .tl-links .paper { font-weight: 600; margin-right: 8px; }
+  .tl-links .pdb { font: 500 .8rem ui-monospace, SFMono-Regular, Menlo, monospace; padding: 3px 8px; border: 1px solid var(--line); border-radius: 6px; color: var(--ink); }
+  .tl-links .pdb:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+  .tl-links .pdb-label { color: var(--muted); }
+  .tl-nav { display: flex; gap: 8px; }
+  .tl-nav button { width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--line); background: var(--surface); cursor: pointer; font-size: 1rem; color: var(--ink); }
+  .tl-nav button:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+  .tl-nav button:disabled { opacity: .35; cursor: default; }
+  @media (max-width: 560px) { .tl-detail { padding: 20px; } .tl-track li { flex-basis: 124px; } }
 
   /* News */
   .news { list-style: none; padding: 0; margin: 32px 0 0; }
@@ -157,6 +203,7 @@
       <button class="menu-btn" aria-expanded="false" aria-controls="menu">Menu</button>
       <ul id="menu">
         <li><a href="#research">Research</a></li>
+        <li><a href="#milestones">Milestones</a></li>
         <li><a href="#team">Team</a></li>
         <li><a href="#news">News</a></li>
         <li><a href="#publications">Publications</a></li>
@@ -238,6 +285,25 @@
     </div>
 
     <p style="margin-top:32px;color:var(--muted)">Interested in supporting our research? Please consider a <a href="https://bcmp.hms.harvard.edu/support-our-research">gift to our department</a>.</p>
+  </div>
+</section>
+
+<!-- ============ MILESTONES ============ -->
+<section id="milestones">
+  <div class="wrap">
+    <div class="eyebrow">Milestones</div>
+    <h2>A timeline of our cilia research</h2>
+    <p class="lede">Key structures and discoveries from the lab and our collaborators. Select a milestone to read more, or use the arrow keys to step through them.</p>
+    <div class="tl-filters" role="group" aria-label="Filter milestones">
+      <button type="button" data-filter="all" aria-pressed="true">All</button>
+      <button type="button" data-filter="motility" aria-pressed="false">Motile machinery</button>
+      <button type="button" data-filter="transport" aria-pressed="false">Ciliary transport</button>
+      <button type="button" data-filter="gate" aria-pressed="false">Transition zone</button>
+    </div>
+    <div class="tl-shell">
+      <ol class="tl-track" id="tl-track" aria-label="Milestones"></ol>
+    </div>
+    <div class="tl-detail" id="tl-detail" aria-live="polite"></div>
   </div>
 </section>
 
@@ -346,50 +412,53 @@
       <h2 style="font-size:1.6rem">Alumni</h2>
       <h3>Postdoctoral fellows</h3>
       <ul>
-        <li><b>Sven Lange</b> <span>2022–2026</span><br><span>Assistant Professor, Weill Cornell Medicine</span>
+        <li><b>Sven Lange</b> <span>10/2022 – 08/2026</span><br><span>Assistant Professor, Weill Cornell Medicine</span>
           <details><summary>Bio</summary><p>Sven determined how <a href="https://www.cell.com/cell/fulltext/S0092-8674(25)00865-7">ubiquitinated proteins are retrieved from cilia</a>. He was awarded a Sara Elizabeth O'Brien Trust Postdoc Fellowship in 2023. He started his own lab at Cornell in September 2026.</p><div class="links"><a href="https://orcid.org/0000-0002-6011-8647">ORCiD</a> · <a href="https://www.sven-lange.xyz/">Website</a></div></details>
         </li>
-        <li><b>Jin Dai</b> <span>2021–2025</span><br><span>Group Leader, Soochow University, China</span>
+        <li><b>Jin Dai</b> <span>08/2021 – 01/2025</span><br><span>Group Leader, Soochow University, China</span>
           <details><summary>Bio</summary><p>Jin was a postdoctoral fellow in the Brown lab from August 2021 to January 2025 and was awarded a BCMP Christopher Walsh Postdoctoral Fellowship in 2022. During his time in the lab, Jin studied the mastigoneme and how the intraflagellar transport machinery transports axonemal complexes. Jin left to set up his own group at Soochow University, China.</p></details>
         </li>
-        <li><b>Travis Walton</b> <span>2019–2024</span><br><span>Assistant Professor, Van Andel Institute; Sloan Fellow 2025</span>
+        <li><b>Travis Walton</b> <span>04/2019 – 07/2024</span><br><span>Assistant Professor, Van Andel Institute; Sloan Fellow 2025</span>
           <details><summary>Bio</summary><p>During his time in the Brown lab, Travis used cryo-EM to resolve the first structure of a microtubule-bound <a href="https://www.nature.com/articles/s41467-020-20735-7">outer dynein arm</a> (ODA) and used integrative modeling to build a near-complete model of an <a href="https://www.nature.com/articles/s41586-023-06140-2">axoneme</a> from <i>Chlamydomonas reinhardtii</i>. Travis was named a Helen Hay Whitney Fellow in 2019 and left for a tenure-track position at the <a href="https://waltonlab.vai.org/">Van Andel Institute</a> in 2024. He was named a Sloan Research Fellow in 2025.</p><div class="links"><a href="https://orcid.org/0000-0001-6812-1579">ORCiD</a> · <a href="https://waltonlab.vai.org/">Website</a></div></details>
         </li>
-        <li><b>Miao Gui</b> <span>2019–2022</span><br><span>Tenure-track faculty, Zhejiang University, China</span>
+        <li><b>Miao Gui</b> <span>01/2019 – 11/2022</span><br><span>Principal Investigator, Zhejiang University, China</span>
           <details><summary>Bio</summary><p>Charles A King Trust Postdoctoral Fellow 2021-2022. Miao has now started a tenure-track position in Zhejiang University, China. During his time in the lab, Miao determined structures of bovine and human doublet microtubules, and the radial spokes and central apparatus from <i>Chlamydomonas reinhardtii</i>. He also contributed to our work on the intraflagellar transport machinery and collaborated with Dr. Gerhard Wagner's lab to resolve the structure of a GPCR-G-protein complex in a circularized nanodisc.</p><div class="links"><a href="https://orcid.org/0000-0001-9113-8029">ORCiD</a> · <a href="https://miaoguilab.com/">Website</a></div></details>
         </li>
-        <li><b>Hao Wu</b> <span>2019–2020</span><br><span>Assistant Professor, Rice University</span>
+        <li><b>Hao Wu</b> <span>09/2019 – 2020</span><br><span>Assistant Professor, Rice University</span>
           <details><summary>Bio</summary><p>Hao contributed to our work on outer dynein arms and GPCR-G-protein interactions. After leaving the lab, he joined <a href="https://cryoem.ucsf.edu/">Yifan Cheng's lab</a> at UCSF to resume work on chromatin remodelers. In fall 2026, he became an Asst. Prof. at Rice University in Houston, Texas.</p><div class="links"><a href="https://orcid.org/0000-0002-1070-0292">ORCiD</a></div></details>
         </li>
-        <li><b>Sandeep K. Singh</b> <span>2017–2021</span><br><span>Lead Researcher, St. Jude Children’s Research Hospital</span>
+        <li><b>Sandeep K. Singh</b> <span>10/2017 – 12/2021</span><br><span>Research Specialist, UTHSC</span>
           <details><summary>Bio</summary><p>Joined St. Jude's Hospital as a Lead Researcher. During his time in the lab, Sandeep worked on the structure and function of the <a href="https://elifesciences.org/articles/53322">BBSome</a>.</p><div class="links"><a href="https://orcid.org/0000-0001-9322-2929">ORCiD</a></div></details>
         </li>
-        <li><b>Adrian Koh</b> <span>2018–2019</span><br><span>Supermicro (previously Thermo Fisher Scientific)</span>
+        <li><b>Adrian Koh</b> <span>01/2018 – 03/2019</span><br><span>Supermicro (previously Thermo Fisher Scientific)</span>
           <details><summary>Bio</summary><p>During his time in the lab, Adrian worked on the structure of the BBSome complex. After leaving, he joined Thermo Fisher Scientific as an Applications Development Scientist, before joining Supermicro.</p><div class="links"><a href="https://orcid.org/0000-0001-6682-4449">ORCiD</a></div></details>
         </li>
       </ul>
       <h3>Students</h3>
       <ul>
-        <li><b>Jacob Anderson</b> <span>2020–2023</span><br><span>Ph.D.; James Tolbert Shipley Prize 2025</span>
+        <li><b>Jacob Anderson</b> <span>05/2020 – 08/2023</span><br><span>Ph.D.; James Tolbert Shipley Prize 2025</span>
           <details><summary>Bio</summary><p>Jacob joined the lab in May 2020 as our first Ph.D. student. He determined cryo-EM structures of mammalian cilia and elucidated the mechanism of <a href="https://ashpublications.org/blood/article/140/12/1419/485761/Structures-of-VWF-tubules-before-and-after">von Willebrand factor</a> polymerization in collaboration with Tim Springer's lab. He received an NIH F30 Award in 2022 and defended his thesis in August 2023. He was awarded the James Tolbert Shipley Prize in 2025.</p><div class="links"><a href="https://orcid.org/0000-0002-1179-717X">ORCiD</a> · <a href="https://twitter.com/jacobranderso">Twitter</a></div></details>
         </li>
-        <li><b>Raymond Huang</b> <span>2021–2024</span><br><span>Undergraduate researcher; now pursuing medicine</span>
+        <li><b>Raymond Huang</b> <span>09/2021 – 05/2024</span><br><span>Undergraduate researcher; now pursuing medicine</span>
           <details><summary>Bio</summary><p>Raymond joined the lab in September 2021 as an undergraduate researcher and studied axoneme biogenesis. He left in 2024 and started medical school in 2025.</p></details>
         </li>
-        <li><b>Josephine Botsch</b> <span>2019</span><br><span>Master’s student; now at the Max Planck Institute of Biochemistry</span>
+        <li><b>Josephine Botsch</b> <span>06/2019 – 12/2019</span><br><span>Master’s student; now at the Max Planck Institute of Biochemistry</span>
           <details><summary>Bio</summary><p>Master's student. Subsequently became a Ph.D. candidate with Dr. Brenda Schulman at the Max Planck Institute of Biochemistry, Germany. Josie initiated our work on <a href="https://www.cell.com/cell/fulltext/S0092-8674(21)01181-8">mammalian doublet microtubules</a>.</p><div class="links"><a href="https://orcid.org/0000-0002-3358-7069">ORCiD</a></div></details>
         </li>
-        <li><b>Val Leifer</b> <span>2017–2019</span><br><span>Undergraduate; MD candidate, Columbia</span>
+        <li><b>Val Leifer</b> <span>06/2017 – 2019</span><br><span>Undergraduate; MD candidate, Columbia</span>
           <details><summary>Bio</summary><p>Undergraduate student. She earned her MD in 2025 from the Columbia University Vagelos College of Physicians and Surgeons and is currently a resident at Penn Medicine Dermatology.</p></details>
         </li>
-        <li><b>Matthew Mangel</b> <span>2020</span><br><span>Northeastern co-op student.</span></li>
-        <li><b>Erica Sze-Tu</b> <span>2019</span><br><span>Northeastern co-op student.</span></li>
-        <li><b>Shahad Taqi</b> <span>2019</span><br><span>Northeastern co-op student.</span></li>
-        <li><b>Griffin Rademacher</b> <span>2018</span><br><span>Northeastern co-op student.</span></li>
+      </ul>
+      <h3>Northeastern co-op students</h3>
+      <ul class="compact">
+        <li><b>Matthew Mangel</b> <span>2020</span></li>
+        <li><b>Erica Sze-Tu</b> <span>2019</span></li>
+        <li><b>Shahad Taqi</b> <span>2019</span></li>
+        <li><b>Griffin Rademacher</b> <span>2018</span></li>
       </ul>
       <h3>Research assistants</h3>
       <ul>
-        <li><b>Joshua David</b> <span>2017–2019</span><br><span>MD candidate, Virginia Commonwealth University</span>
+        <li><b>Joshua David</b> <span>09/2017 – 02/2019</span><br><span>MD candidate, Virginia Commonwealth University</span>
           <details><summary>Bio</summary><p>Currently an MD candidate at Virginia Commonwealth University.</p><div class="links"><a href="https://orcid.org/0000-0002-4567-9235">ORCiD</a></div></details>
         </li>
       </ul>
@@ -728,6 +797,154 @@ alumniBtn.addEventListener('click', () => {
   alumniBtn.setAttribute('aria-expanded', !alumni.hidden);
   alumniBtn.textContent = alumni.hidden ? 'Show lab alumni' : 'Hide lab alumni';
 });
+
+/* ---------- Milestones timeline ----------
+   To add a milestone, add an object to MILESTONES (any order; sorted by date).
+   theme: "motility" | "transport" | "gate". pdb: list of PDB IDs (may be empty). */
+{
+const MILESTONES = [
+  { date: "2019-10", label: "Decorated doublet microtubule", theme: "motility", collab: "with the Zhang and Dutcher labs",
+    title: "Structure of the Decorated Ciliary Doublet Microtubule", cite: "Ma et al.", journal: "Cell",
+    summary: "A high-resolution structure of the doublet microtubule from Chlamydomonas cilia, revealing the network of microtubule inner proteins that decorate its lumen.",
+    doi: "10.1016/j.cell.2019.09.030", pdb: ["6U42"] },
+  { date: "2020-01", label: "BBSome structure", theme: "transport",
+    title: "Structure and activation mechanism of the BBSome membrane protein trafficking complex", cite: "Singh et al.", journal: "eLife",
+    summary: "The structure of the native mammalian BBSome, the complex that traffics membrane proteins in and out of cilia, and how it is activated for cargo recognition.",
+    doi: "10.7554/eLife.53322", pdb: ["6VBU", "6VBV"] },
+  { date: "2020-12", label: "Radial spokes", theme: "motility",
+    title: "Structures of radial spokes and associated complexes important for ciliary motility", cite: "Gui et al.", journal: "Nat. Struct. Mol. Biol.",
+    summary: "Structures of the radial spokes, the mechanoregulatory complexes that relay signals from the central apparatus to the dynein motors.",
+    doi: "10.1038/s41594-020-00530-0", pdb: ["7JTK", "7JTS", "7JU4"] },
+  { date: "2021-01", label: "Microtubule-bound dynein", theme: "motility",
+    title: "Structure of a microtubule-bound axonemal dynein", cite: "Walton et al.", journal: "Nat. Commun.",
+    summary: "The first structure of an outer dynein arm, the motor that powers the ciliary beat, bound to a doublet microtubule.",
+    doi: "10.1038/s41467-020-20735-7", pdb: ["7KZM", "7KZN", "7KZO"] },
+  { date: "2021-10", label: "Mammalian doublet microtubules", theme: "motility",
+    title: "De novo identification of mammalian ciliary motility proteins using cryo-EM", cite: "Gui et al.", journal: "Cell",
+    summary: "The structure of a mammalian doublet microtubule, with its proteins identified directly from the cryo-EM map.",
+    doi: "10.1016/j.cell.2021.10.007", pdb: ["7RRO"] },
+  { date: "2022-05", label: "Central apparatus", theme: "motility", collab: "with the Dutcher and Zhang labs",
+    title: "Ciliary central apparatus structure reveals mechanisms of microtubule patterning", cite: "Gui et al.", journal: "Nat. Struct. Mol. Biol.",
+    summary: "The structure of the Chlamydomonas central apparatus, showing how its microtubules are patterned.",
+    doi: "10.1038/s41594-022-00770-2", pdb: ["7SOM", "7SQC"] },
+  { date: "2022-10", label: "Human ciliary microtubules", theme: "motility",
+    title: "SPACA9 is a lumenal protein of human ciliary singlet and doublet microtubules", cite: "Gui et al.", journal: "PNAS",
+    summary: "Structures of human respiratory doublet microtubules, identifying SPACA9 as a lumenal protein of both singlet and doublet microtubules.",
+    doi: "10.1073/pnas.2207605119", pdb: ["7UN1", "7UNG"] },
+  { date: "2022-12", label: "IFT-A trains", theme: "transport",
+    title: "Mechanism of IFT-A polymerization into trains for ciliary transport", cite: "Meleppattu et al.", journal: "Cell",
+    summary: "The structure of the native IFT-A complex, and how it polymerizes into the trains that move cargo along cilia.",
+    doi: "10.1016/j.cell.2022.11.033", pdb: ["8F5O", "8F5P"] },
+  { date: "2023-05", label: "Atomic models of axonemes", theme: "motility", collab: "with Tom Burgoyne and Hannah Mitchison",
+    title: "Axonemal structures reveal mechanoregulatory and disease mechanisms", cite: "Walton et al.", journal: "Nature",
+    summary: "Near-complete atomic models of the axoneme, showing how ciliary beating is regulated and how disease mutations disrupt it.",
+    doi: "10.1038/s41586-023-06140-2", pdb: ["8GLV", "8J07"] },
+  { date: "2023-06", label: "Sperm tail", theme: "motility", collab: "with the Zeev-Ben-Mordehai and Zhang labs",
+    title: "Structural specializations of the sperm tail", cite: "Leung et al.", journal: "Cell",
+    summary: "Structures of mammalian sperm doublet microtubules, revealing features specific to the sperm flagellum.",
+    doi: "10.1016/j.cell.2023.05.026", pdb: ["8OTZ", "8OU0", "8SNB"] },
+  { date: "2024-04", label: "Tubulin isotypes of motile cilia", theme: "motility", collab: "with the Mill lab",
+    title: "Ciliopathy patient variants reveal organelle-specific functions for TUBB4B in axonemal microtubules", cite: "Dodd et al.", journal: "Science",
+    summary: "Identified the main tubulin isotypes that form mammalian motile cilia, including the TUBB4B–TUBA1A heterodimer of human respiratory doublet microtubules, as part of a study linking ciliopathy variants in TUBB4B to defects in axonemal microtubules.",
+    doi: "10.1126/science.adf5489", pdb: ["8SH7"] },
+  { date: "2024-04", label: "Mastigonemes", theme: "motility", collab: "with the Zhang, Dutcher and Lechtreck labs",
+    title: "Mastigoneme structure reveals insights into the O-linked glycosylation code of native hydroxyproline-rich helices", cite: "Dai et al.", journal: "Cell",
+    summary: "The structure of mastigonemes, the hair-like filaments on the surface of Chlamydomonas flagella, which reveals how their hydroxyproline-rich proteins are glycosylated.",
+    doi: "10.1016/j.cell.2024.03.005", pdb: ["9B4H"] },
+  { date: "2025-01", label: "Axonemes across tissues", theme: "motility", collab: "with the Zhang and Zeev-Ben-Mordehai labs",
+    title: "Structural diversity of axonemes across mammalian motile cilia", cite: "Leung et al.", journal: "Nature",
+    summary: "Axoneme structures from several mammalian tissues, including radial spoke 3 and a sperm-specific TRiC chaperone tethered to the axoneme.",
+    doi: "10.1038/s41586-024-08337-5", pdb: ["9CPB", "9CPC", "9FQR"] },
+  { date: "2025-03", label: "Trypanosomatid doublets", theme: "motility",
+    title: "Evolutionary adaptations of doublet microtubules in trypanosomatid parasites", cite: "Doran et al.", journal: "Science",
+    summary: "Doublet microtubules from trypanosomatid parasites, which test whether all the proteins lining their lumen are needed for motility.",
+    doi: "10.1126/science.adr5507", pdb: ["9E78"] },
+  { date: "2025-08", label: "Retrieving ubiquitinated proteins", theme: "transport",
+    title: "A conserved mechanism for the retrieval of polyubiquitinated proteins from cilia", cite: "Lange et al.", journal: "Cell",
+    summary: "Identifies a conserved mechanism, involving CFAP36, that retrieves polyubiquitinated proteins from cilia.",
+    doi: "10.1016/j.cell.2025.07.043", pdb: [] },
+  { date: "2026-09", label: "Human transition zone", theme: "gate",
+    title: "In situ structure of the human ciliary transition zone links linker defects to primary ciliary dyskinesia", cite: "Zhou et al.", journal: "Science",
+    summary: "The in situ structure of the human ciliary transition zone, which links defects in the zone's linkers to primary ciliary dyskinesia.",
+    doi: "10.1126/science.aei5957", pdb: ["11XU", "11YJ"] },
+].sort((a, b) => a.date.localeCompare(b.date));
+
+const THEMES = { motility: "Motile machinery", transport: "Ciliary transport", gate: "Transition zone" };
+const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const tlTrack = document.getElementById('tl-track');
+const tlDetail = document.getElementById('tl-detail');
+let tlCurrent = MILESTONES.length - 1;
+let tlFilter = 'all';
+const tlEsc = t => t.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+MILESTONES.forEach((m, i) => {
+  const li = document.createElement('li');
+  li.innerHTML = `<span class="tl-year"></span><button type="button" class="tl-item" data-theme="${m.theme}" data-i="${i}">
+    <span class="tl-dot"></span><span class="tl-label">${tlEsc(m.label)}</span></button>`;
+  tlTrack.appendChild(li);
+});
+const tlItems = [...tlTrack.children];
+const tlVisible = () => MILESTONES.map((m, i) => i).filter(i => tlFilter === 'all' || MILESTONES[i].theme === tlFilter);
+
+function tlLayout() {
+  let lastYear = null;
+  tlItems.forEach((li, i) => {
+    const show = tlFilter === 'all' || MILESTONES[i].theme === tlFilter;
+    li.hidden = !show;
+    const y = MILESTONES[i].date.slice(0, 4);
+    li.querySelector('.tl-year').textContent = show && y !== lastYear ? y : '';
+    if (show) lastYear = y;
+  });
+}
+
+function tlSelect(i, scroll = true) {
+  tlCurrent = i;
+  const m = MILESTONES[i];
+  tlItems.forEach((li, j) => {
+    const b = li.querySelector('button');
+    b.setAttribute('aria-current', j === i);
+    b.tabIndex = j === i ? 0 : -1;
+  });
+  const [y, mo] = m.date.split('-');
+  const vis = tlVisible(), pos = vis.indexOf(i);
+  const pdb = m.pdb.length
+    ? `<span class="pdb-label">PDB:</span>` + m.pdb.map(id => `<a class="pdb" href="https://www.rcsb.org/structure/${id}">${id}</a>`).join('')
+    : '';
+  tlDetail.innerHTML = `
+    <div class="tl-meta">${MONTHS[+mo - 1]} ${y} · ${tlEsc(m.journal)}<span class="tl-tag ${m.theme === 'motility' ? '' : m.theme}">${THEMES[m.theme]}</span></div>
+    <div class="tl-nav"><button type="button" data-step="-1" aria-label="Previous milestone" ${pos <= 0 ? 'disabled' : ''}>←</button><button type="button" data-step="1" aria-label="Next milestone" ${pos >= vis.length - 1 ? 'disabled' : ''}>→</button></div>
+    <h3>${tlEsc(m.label)}</h3>
+    <p>${tlEsc(m.summary)}</p>
+    <div class="tl-cite">${tlEsc(m.cite)} “${tlEsc(m.title)}.” <i>${tlEsc(m.journal)}</i> (${y})${m.collab ? ` · In collaboration ${tlEsc(m.collab)}` : ''}</div>
+    <div class="tl-links"><a class="paper" href="https://doi.org/${m.doi}">Read the paper →</a>${pdb}</div>`;
+  if (scroll) {
+    const li = tlItems[i];
+    tlTrack.scrollTo({ left: li.offsetLeft - tlTrack.clientWidth / 2 + li.offsetWidth / 2, behavior: 'smooth' });
+  }
+}
+
+function tlStep(d) {
+  const vis = tlVisible(), pos = vis.indexOf(tlCurrent) + d;
+  if (pos >= 0 && pos < vis.length) { tlSelect(vis[pos]); tlItems[vis[pos]].querySelector('button').focus({ preventScroll: true }); }
+}
+
+tlTrack.addEventListener('click', e => { const b = e.target.closest('.tl-item'); if (b) tlSelect(+b.dataset.i); });
+tlTrack.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { e.preventDefault(); tlStep(e.key === 'ArrowRight' ? 1 : -1); }
+});
+tlDetail.addEventListener('click', e => { const b = e.target.closest('[data-step]'); if (b) tlStep(+b.dataset.step); });
+document.querySelector('.tl-filters').addEventListener('click', e => {
+  const b = e.target.closest('button'); if (!b) return;
+  tlFilter = b.dataset.filter;
+  document.querySelectorAll('.tl-filters button').forEach(x => x.setAttribute('aria-pressed', x === b));
+  tlLayout();
+  const vis = tlVisible();
+  tlSelect(vis.includes(tlCurrent) ? tlCurrent : vis[vis.length - 1]);
+});
+tlLayout();
+tlSelect(tlCurrent, false);
+requestAnimationFrame(() => { tlTrack.scrollLeft = tlTrack.scrollWidth; });
+}
 
 /* ---------- Mobile menu ---------- */
 const menuBtn = document.querySelector('.menu-btn');
