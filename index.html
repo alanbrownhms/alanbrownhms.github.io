@@ -129,21 +129,18 @@
   .tl-item { display: block; width: 100%; background: none; border: 0; padding: 0 10px; text-align: left; cursor: pointer; font: inherit; color: var(--ink); }
   .tl-dot { display: block; width: 14px; height: 14px; border-radius: 50%; background: var(--bg); border: 2px solid var(--muted); margin: 6px 0 12px; position: relative; z-index: 1; transition: transform .15s; }
   .tl-item[data-theme="transport"] .tl-dot { border-color: #2f6f9f; }
-  .tl-item[data-theme="gate"] .tl-dot { border-color: #7a5aa6; }
   .tl-item[data-theme="motility"] .tl-dot { border-color: var(--accent); }
   .tl-label { display: block; font-size: .85rem; line-height: 1.35; color: var(--muted); }
   .tl-item:hover .tl-label { color: var(--ink); }
   .tl-item:hover .tl-dot { transform: scale(1.25); }
   .tl-item[aria-current="true"] .tl-dot { background: var(--accent); border-color: var(--accent); transform: scale(1.35); }
   .tl-item[aria-current="true"][data-theme="transport"] .tl-dot { background: #2f6f9f; border-color: #2f6f9f; }
-  .tl-item[aria-current="true"][data-theme="gate"] .tl-dot { background: #7a5aa6; border-color: #7a5aa6; }
   .tl-item[aria-current="true"] .tl-label { color: var(--ink); font-weight: 600; }
   .tl-item:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 6px; }
   .tl-detail { margin-top: 20px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px 28px; display: grid; grid-template-columns: 1fr auto; gap: 8px 24px; align-items: start; }
   .tl-meta { font-size: .82rem; color: var(--muted); font-weight: 500; }
   .tl-tag { display: inline-block; margin-left: 8px; padding: 1px 9px; border-radius: 999px; font-size: .75rem; font-weight: 600; background: var(--accent-soft); color: var(--accent); }
   .tl-tag.transport { background: #e6eff6; color: #2f6f9f; }
-  .tl-tag.gate { background: #efe9f6; color: #7a5aa6; }
   .tl-detail h3 { grid-column: 1 / -1; margin: 4px 0 2px; font-size: 1.3rem; }
   .tl-detail p { grid-column: 1 / -1; margin: 0; color: var(--muted); max-width: 75ch; }
   .tl-cite { grid-column: 1 / -1; font-size: .88rem; color: var(--muted); }
@@ -298,7 +295,6 @@
       <button type="button" data-filter="all" aria-pressed="true">All</button>
       <button type="button" data-filter="motility" aria-pressed="false">Motile machinery</button>
       <button type="button" data-filter="transport" aria-pressed="false">Ciliary transport</button>
-      <button type="button" data-filter="gate" aria-pressed="false">Transition zone</button>
     </div>
     <div class="tl-shell">
       <ol class="tl-track" id="tl-track" aria-label="Milestones"></ol>
@@ -320,7 +316,7 @@
           <h3>Alan Brown</h3>
           <div class="role">Principal Investigator</div>
           <p>Alan did his Ph.D. at the University of Cambridge with Tom Blundell and was a postdoc with <a href="https://higginslab.web.ox.ac.uk/">Matt Higgins</a> and <a href="https://www2.mrc-lmb.cam.ac.uk/groups/ribo/">Venki Ramakrishnan</a>. He started at HMS in September 2017 and was named a <a href="https://www.pewtrusts.org/en/projects/pew-biomedical-scholars">Pew Biomedical Scholar</a> in 2019. He was promoted to Associate Professor in January 2023 and Professor in June 2026.</p>
-          <div class="links"><a href="https://orcid.org/0000-0002-0021-0476">ORCiD</a><a href="https://bsky.app/profile/alanbrownhms.bsky.social">Bluesky</a><a href="mailto:alan_brown@hms.harvard.edu">Email</a></div>
+          <div class="links"><a href="https://orcid.org/0000-0002-0021-0476">ORCiD</a><a href="https://bsky.app/profile/alanbrownhms.bsky.social">Bluesky</a><a href="https://www.linkedin.com/in/alan-brown-76bbb4135/">LinkedIn</a><a href="mailto:alan_brown@hms.harvard.edu">Email</a></div>
         </div>
       </div>
 
@@ -369,6 +365,15 @@
       </div>
 
       <div class="person">
+        <img src="images/Matt_Palmer.jpg" alt="Matt Palmer" loading="lazy">
+        <h3>Matt Palmer</h3>
+        <div class="role">Research Assistant</div>
+        <details><summary>Bio</summary>
+          <p>Matt received his B.S. in biochemistry from Northeastern University in 2026. During co-ops at Larkspur Biosciences and Takeda, he developed cell-based functional assays to screen therapeutic candidates.</p>
+        </details>
+      </div>
+
+      <div class="person">
         <img src="images/Jeremy_Bennett2.jpg?itok=ZsI-2M3O" alt="Jeremy Bennett" loading="lazy">
         <h3>Jeremy Bennett</h3>
         <div class="role">Ph.D. Candidate</div>
@@ -387,6 +392,7 @@
         <details><summary>Bio</summary>
           <p>Tierra completed her BS in molecular biology at UC San Diego, then spent two years as a research technician at the La Jolla Institute for Immunology studying arena- and filovirus spike proteins before moving to Boston for her PhD.</p>
         </details>
+        <div class="links"><a href="https://www.linkedin.com/in/tierra-buck/">LinkedIn</a></div>
       </div>
 
       <div class="person">
@@ -472,6 +478,8 @@
     <div class="eyebrow">News</div>
     <h2>Lab news</h2>
     <ul class="news">
+      <li><time datetime="2026-10-23">23 Oct 2026</time><div><h3>BCMP Retreat</h3><p>It was wonderful to return to the retreat this year, where Ammaar, Jeremy, Haixia, and Tierra all presented posters.</p></div></li>
+      <li><time datetime="2026-10-19">19 Oct 2026</time><div><h3>Matt Palmer joins</h3><p>We're delighted to have Matt Palmer join as a Research Assistant. Matt comes with a background in industry, having previously worked at Larkspur Biosciences and Takeda.</p></div></li>
       <li><time datetime="2026-09-29">29 Sep 2026</time><div><h3>PKD2 complexes</h3><p>Delighted that the lab could contribute to Karl Lechtreck's study of genetically and spatially distinct PKD2 complexes in Chlamydomonas flagella, now published in <a href="https://www.pnas.org/doi/10.1073/pnas.2524371123">PNAS</a></p></div></li>
       <li><time datetime="2026-09-10">10 Sep 2026</time><div><h3>Structure of the human transition zone, link to PCD</h3><p>Haixia's paper is now online at <a href="https://www.science.org/doi/10.1126/science.aei5957">Science</a>. Accompanying <a href="https://hms.harvard.edu/news/discovery-fills-gap-understanding-diagnosing-primary-ciliary-dyskinesia">news article</a>.</p></div></li>
       <li><time datetime="2026-08-31">31 Aug 2026</time><div><h3>Sven's last day</h3><p>Goodbye, Sven, and good luck at Cornell! <a href="https://brown.hms.harvard.edu/sites/brown.hms.harvard.edu/files/news-photos/IMG_4778.jpg"> </a></p></div></li>
@@ -800,7 +808,7 @@ alumniBtn.addEventListener('click', () => {
 
 /* ---------- Milestones timeline ----------
    To add a milestone, add an object to MILESTONES (any order; sorted by date).
-   theme: "motility" | "transport" | "gate". pdb: list of PDB IDs (may be empty). */
+   theme: "motility" | "transport". pdb: list of PDB IDs (may be empty). */
 {
 const MILESTONES = [
   { date: "2019-10", label: "Decorated doublet microtubule", theme: "motility", collab: "with the Zhang and Dutcher labs",
@@ -863,13 +871,13 @@ const MILESTONES = [
     title: "A conserved mechanism for the retrieval of polyubiquitinated proteins from cilia", cite: "Lange et al.", journal: "Cell",
     summary: "Identifies a conserved mechanism, involving CFAP36, that retrieves polyubiquitinated proteins from cilia.",
     doi: "10.1016/j.cell.2025.07.043", pdb: [] },
-  { date: "2026-09", label: "Human transition zone", theme: "gate",
+  { date: "2026-09", label: "Human transition zone", theme: "motility",
     title: "In situ structure of the human ciliary transition zone links linker defects to primary ciliary dyskinesia", cite: "Zhou et al.", journal: "Science",
     summary: "The in situ structure of the human ciliary transition zone, which links defects in the zone's linkers to primary ciliary dyskinesia.",
     doi: "10.1126/science.aei5957", pdb: ["11XU", "11YJ"] },
 ].sort((a, b) => a.date.localeCompare(b.date));
 
-const THEMES = { motility: "Motile machinery", transport: "Ciliary transport", gate: "Transition zone" };
+const THEMES = { motility: "Motile machinery", transport: "Ciliary transport" };
 const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 const tlTrack = document.getElementById('tl-track');
 const tlDetail = document.getElementById('tl-detail');
